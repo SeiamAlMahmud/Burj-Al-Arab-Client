@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react'
 export const bookingApi = createContext(null)
 const WraperContext = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [errLoading, setErrorLoading] = useState(null)
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   console.log(startDate)
@@ -25,6 +27,8 @@ const WraperContext = ({ children }) => {
       },
 
     }
+    setIsLoading(true)
+    setErrorLoading(null)
     // ,"Access-Control-Allow-Credentials": true, "Access-Control-Allow-Origin": apiUrl1 || apiUrl2 
     fetch(apiUrl1 || apiUrl2, {
       method: "POST",
@@ -34,11 +38,12 @@ const WraperContext = ({ children }) => {
       .then(res => res.json())
       .then(data => {
         console.log(data)
+        setErrorLoading(data)
       })
   }
  
   
-  const info = { handleCheckIn, startDate, setStartDate, endDate, setEndDate,}
+  const info = { handleCheckIn, startDate, setStartDate, endDate, setEndDate,errLoading}
   return (
     <>
       <bookingApi.Provider value={info}>
