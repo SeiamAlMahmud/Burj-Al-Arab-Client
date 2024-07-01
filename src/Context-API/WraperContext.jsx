@@ -25,9 +25,10 @@ const WraperContext = ({ children }) => {
       },
 
     }
+    // ,"Access-Control-Allow-Credentials": true, "Access-Control-Allow-Origin": apiUrl1 || apiUrl2 
     fetch(apiUrl1 || apiUrl2, {
       method: "POST",
-      headers: { 'Content-Type': 'application/json',"Access-Control-Allow-Credentials": true, "Access-Control-Allow-Origin": apiUrl1 || apiUrl2 },
+      headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify(newBooking)
     })
       .then(res => res.json())
