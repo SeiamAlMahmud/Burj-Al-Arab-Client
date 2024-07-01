@@ -7,7 +7,8 @@ const WraperContext = ({ children }) => {
   console.log(endDate)
  
   const handleCheckIn = () => {
-
+    const apiUrl = 'https://burj-al-arab-client-server.vercel.app/addBooking'
+    // const apiUrl = 'http://127.0.0.1:3000/addBooking'
     const newBooking = {
       name: '',
       checkIn: startDate,
@@ -24,7 +25,7 @@ const WraperContext = ({ children }) => {
       },
 
     }
-    fetch('http://127.0.0.1:3000/addBooking', {
+    fetch(apiUrl, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newBooking)
