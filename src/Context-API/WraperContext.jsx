@@ -29,7 +29,9 @@ const WraperContext = ({ children }) => {
             'Content-Type': 'application/json' // Optional
         }
     })
-    .then(response => console.log(response.data))
+    .then(response =>{ 
+      setIsAuthenticated(true)
+      console.log(response.data)})
     .catch(error => console.error(error))
     }, [])
   const handleCheckIn = () => {
@@ -132,6 +134,7 @@ const WraperContext = ({ children }) => {
     signOut(auth).then(() => {
       console.log('Sign-out successful.')
       setIsAuthenticated(false)
+      localStorage.removeItem('uid')
     }).catch((error) => {
       // An error happened.
     });
