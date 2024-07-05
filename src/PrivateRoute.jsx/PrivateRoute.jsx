@@ -9,7 +9,7 @@ const PrivateRoute = ({ children }) => {
   
   if (!isAuthenticated) {
     // Redirect to login if not authenticated
-    return <Navigate to="/login"  state={{ from: location.pathname }} />;
+    return <Navigate to="/login" replace={true}  state={{ from: location.pathname }} />;
   }else{
 
     
