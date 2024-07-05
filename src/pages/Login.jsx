@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Button from '@mui/material/Button';
 import {  signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from '../firebase/firebase.config';
@@ -11,9 +11,12 @@ const Login = () => {
   const navigate = useNavigate()
   const {from} =location.state
   console.log(from)
-  if (isAuthenticated) {
-   navigate(from)
-  }
+  useEffect(()=>{
+
+    if (isAuthenticated) {
+      navigate(from)
+    }
+  },[isAuthenticated,from,navigate])
   
   return (
     <div>
