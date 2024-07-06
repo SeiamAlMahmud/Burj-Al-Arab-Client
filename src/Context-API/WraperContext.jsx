@@ -34,6 +34,23 @@ const WraperContext = ({ children }) => {
       console.log(response.data)})
     .catch(error => console.error(error))
     }, [])
+    useEffect(()=>{
+      try {
+        axios.get('http://127.0.0.1:3000/getBooking', {
+          headers: {
+              Authorization: `Bearer ${localStorage.getItem('uid')}`,
+              'Content-Type': 'application/json' // Optional
+          }
+      })
+      .then(response =>{ 
+        setIsAuthenticated(true)
+        console.log(response.data)})
+      .catch(error => console.error(error))
+      } catch (error) {
+        
+      }
+     
+    },[])
   const handleCheckIn = () => {
 
     const newBooking = {
